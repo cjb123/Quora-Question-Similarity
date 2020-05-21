@@ -46,3 +46,24 @@ Source: https://www.kaggle.com/c/quora-question-pairs#evaluation
 Metric(s): 
 * log-loss : https://www.kaggle.com/wiki/LogarithmicLoss
 * Binary Confusion Matrix
+
+
+
+
+<h2>$ Observations...$</h2>
+
+
+^^^ USING TFIDF WEIGHTED WORD2VEC ^^^
+
+1. For SVM , LR, XGBoost the train log-loss  test log-loss is almost similar.So no overfitting is expected.
+
+2. XGBOOST is a more complex model than SVM and SVM is  a more complex model than Logistic Regression.So, giving similar accuracy(slightly better in xgBoost)signifies that there is very less or no underfitting.
+
+^^^ USING TFIDF WEIGHTED W2V ^^^
+
+1. In these models also, the train and test accuracy(log-loss) are relatively close.So no overfiiting expected.
+
+2. The LR model gives a fairly good test accuracy(0.394);SVM with l2 regulization and random hyperparameter gives similar accuracy(0.393).But XGBOOST gives a worser accuracy(0.593). XGBOOST is a fairly complex model,but it gives an accuracy similar to LR and SVM models(train: 356 ; test: 359).Since a complex model like xgBoost gives a fairly good accuracy and even lower than a  less complex model like LR and SVM, we can expect no underfitting.
+
+
+NOTE: However, in all the models we see that although the log-loss is significantly lower than that given by a random model,but the precision and specially recall for negative class(non similar question) is low.Low recall(like 0.644) for negative class can be really harmful considering the business constraints of this problem.Low recall for negative class implies that the number of False positives are high.So two non similar questions will be categorized as similar by the models and so will have same answers which will hamper the reader's experience.
